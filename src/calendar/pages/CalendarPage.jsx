@@ -16,7 +16,7 @@ export const CalendarPage = () => {
 	const [lastView, setlastView] = useState(localStorage.getItem('lastView') || 'week')
 
 	
-	const eventStyleGetter = (event, start, end, isSelected  ) => {
+	const eventStyleGetter = (event, isSelected  ) => {
 		const style = {
 			backgroundColor: '#347CF7',
 			borderRadius: '0px',
@@ -26,7 +26,8 @@ export const CalendarPage = () => {
 
 		if (isSelected && activeEvent && event.id === activeEvent.id) {
       style.backgroundColor = '#318CF7';
-			style.opacity = '1'
+			style.opacity = '1';
+			style.fontSize = '1.01rem'
     }
 
 		return {
