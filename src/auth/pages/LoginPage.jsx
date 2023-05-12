@@ -60,6 +60,7 @@ export const LoginPage = () => {
 						<div className="form-group mb-2">
 							<input
 								type="text"
+								autoComplete='email'
 								className="form-control"
 								placeholder="Correo"
 								name='loginEmail'
@@ -70,6 +71,7 @@ export const LoginPage = () => {
 						<div className="form-group mb-2">
 							<input
 								type="password"
+								autoComplete='current-password'
 								className="form-control"
 								placeholder="Contraseña"
 								name='loginPassword'
@@ -94,6 +96,7 @@ export const LoginPage = () => {
 						<div className="form-group mb-2">
 							<input
 								type="text"
+								autoComplete='off'
 								className="form-control"
 								placeholder="Nombre"
 								name='registerName'
@@ -104,6 +107,7 @@ export const LoginPage = () => {
 						<div className="form-group mb-2">
 							<input
 								type="email"
+								autoComplete='email'
 								className="form-control"
 								placeholder="Correo"
 								name='registerEmail'
@@ -114,6 +118,7 @@ export const LoginPage = () => {
 						<div className="form-group mb-2">
 							<input
 								type="password"
+								autoComplete='new-password'
 								className="form-control"
 								placeholder="Contraseña"
 								name='registerPassword'
@@ -125,6 +130,7 @@ export const LoginPage = () => {
 						<div className="form-group mb-2">
 							<input
 								type="password"
+								autoComplete='new-password'
 								className="form-control"
 								placeholder="Repita la contraseña"
 								name='registerPassword2'
