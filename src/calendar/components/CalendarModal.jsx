@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 
 import { addHours, differenceInSeconds } from 'date-fns';
 
@@ -16,7 +16,6 @@ import es from 'date-fns/locale/es';
 
 
 import { useCalendarStore, useUiStore } from '../../hooks';
-import { useEffect } from 'react';
 
 registerLocale('es', es);
 

@@ -1,31 +1,40 @@
 /* eslint-disable no-unused-vars */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Calendar } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { CalendarEvent, NavBar, CalendarModal, FabAddNew, FabDelete } from '../';
 import { localizer, getMessagesES } from '../../helpers';
-import { useUiStore, useCalendarStore } from '../../hooks';
+import { useUiStore, useCalendarStore, useAuthStore } from '../../hooks';
 
 
 export const CalendarPage = () => {
 
+	const { user } = useAuthStore();
+
+
 	const { openDateModal } = useUiStore()
 
-	const {events, setActiveEvent, clearActiveEvent, activeEvent} = useCalendarStore()
+	const {events, setActiveEvent, clearActiveEvent, activeEvent, startLoadingEvents} = useCalendarStore()
 
 	const [lastView, setlastView] = useState(localStorage.getItem('lastView') || 'week')
 
 	
 	const eventStyleGetter = (event, isSelected  ) => {
+
+
+
+		const isMyEvent = (user.id === event.user._id) || (user.uid === event.user._id);
+
 		const style = {
-			backgroundColor: '#347CF7',
+			backgroundColor: isMyEvent ? '#347CF7' : '#e8c680',
 			borderRadius: '0px',
-			opacity: 0.6,
+			opacity: 0.8,
 			color: 'white'			
 		};
 
 		if (isSelected && activeEvent && event.id === activeEvent.id) {
-      style.backgroundColor = '#318CF7';
+      
+			style.backgroundColor = (isMyEvent ?  '#3166f7' :  '#cca556');
 			style.opacity = '1';
 			style.fontSize = '1.01rem'
     }
@@ -48,8 +57,20 @@ export const CalendarPage = () => {
 	}
 
 	const onClickOutsideEvent = () => {
+
+		if(activeEvent){
+
 		clearActiveEvent()
+		}
 	}
+
+	useEffect(() => {
+
+		startLoadingEvents()
+	
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [] )
+	
 	
 	return (
 		<>
